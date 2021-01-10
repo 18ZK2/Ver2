@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>shirahama1F</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+ <form name="room" id="room" method="POST">
+    <a href="{% url 'index2' %}">ホームページ</a>
+    <a href="{% url 'shirahama2f' %}">白浜2f</a><br>
+    <h1>白浜オフィス1F</h1>
+    <table border="0">
+    <tr> <td align="right"><b> 入力した場所：</b></td>
+    <td><input type="text" name="get_room_name" size="30" maxlength="20" value="0" required> <input type="submit" name="statebuttom"></td>
+    </tr>
+    </table>
+    {% load static %}
+    {% csrf_token %}
+  <img src="{% static "/pics/shirahama1.jpg" %}" usemap="#ImageMap" alt="" />
+  <map name="ImageMap">
+    <area shape="poly" coords="66,29,65,91,214,89,215,30,215,30" nohref alt="白浜1F-1" onclick="getname(this.alt)"/>
+    <area shape="poly" coords="283,29,380,29,379,173,284,171,286,171" nohref alt="白浜1F-2" onclick="getname(this.alt)"/>
+    <area shape="poly" coords="381,29,537,29,537,173,381,173,382,173" nohref alt="白浜1F-3"  onclick="getname(this.alt)"/>
+    <area shape="poly" coords="538,30,693,31,694,173,536,173,538,173" nohref alt="白浜1F-4" onclick="getname(this.alt)"/>
+    <area shape="poly" coords="696,26,1021,28,1021,175,696,177,696,176" nohref alt="白浜1F-5" onclick="getname(this.alt)"/>
+    <area shape="poly" coords="61,303,248,305,249,826,64,824,64,824" nohref alt="白浜1F-6" onclick="getname(this.alt)"/>
+    <area shape="poly" coords="381,207,757,207,756,261,381,261,381,261" nohref alt="白浜1F-WC" onclick="getname(this.alt)"/>
+
+    <script>
+     function getname(alt){
+       document.room.get_room_name.value =alt;
+     }
+    </script>
+  </map>
+ </form>
+  <div class =hyouji>
+   <h3>全員の状態と位置</h3>
+   <p>社外は0</p>
+     <table border="1">
+        <tr>
+            <th>名前</th>
+            <th>状態</th>
+            <th>場所</th>
+        </tr>
+        {% for EmployeeState in data %}
+        <tr>
+            <td>{{ EmployeeState.userID }}</td>
+            <td>{{ EmployeeState.EMPstate }}</td>
+            <td>{{ EmployeeState.RoomID }}号室</td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+    </div>
+</body>
+</html>

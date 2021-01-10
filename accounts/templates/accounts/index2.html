@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ログイン後トップページ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class =hyouji >
+    <h2>あなたの現在の状態</h2>
+     <table border="1">
+        <tr>
+            <th>名前</th>
+            <th>状態</th>
+            <th>場所</th>
+        </tr>
+        {% for EmployeeState in data %}
+        <tr>
+            <td>{{ EmployeeState.userID }}</td>
+            <td>{{ EmployeeState.EMPstate }}</td>
+            <td>{{ EmployeeState.RoomID }}号室</td>
+        </tr>
+        {% endfor %}
+        
+      </table>
+    </div>
+
+    <a href="{% url 'logout' %}">ログアウト</a><br>
+    <a href="{% url 'state' %}">状態の入力</a><br />
+    <a href="{% url 'shirahama1f' %}">白浜1f</a><br>
+    <a href="{% url 'shirahama2f' %}">白浜2f</a><br>
+    <a href="{% url 'search' %}">検索</a><br>
+    
+  <center><br><br>
+      <h1>ログイン後トップページ</h1>
+
+
+  </center>
+</body>
+</html>
